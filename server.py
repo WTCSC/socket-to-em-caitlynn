@@ -61,11 +61,11 @@ def remove_client(client):
         room = client_rooms.get(client, 'public')
         if room in rooms and client in rooms[room]:
             rooms[room].remove(client)
-            broadcast(f"{username} has left the chat.".encode('utf-8'), client)
+            broadcast(f"{username} has left the chat  (~‾‾∇‾‾  )~ bye~".encode('utf-8'), client)
 
         del client_rooms[client]
         client.close
-        print(f"{username} has disconnected.")
+        print(f"{username} has disconnected  (~‾‾∇‾‾  )~ bye~")
 
 # Handles the three passable commands from the user
 def handle_client(client):
@@ -111,8 +111,8 @@ def join_room(client, room_name):
     client_rooms[client] = room_name
 
     username = usernames.index[clients.index(client)]
-    broadcast(f"{username} has joined the room '{room_name}'.".encode('utf-8'), client)
-    client.send(f"You joined the room '{room_name}'.".encode('utf-8'))
+    broadcast(f"{username} has joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞ".encode('utf-8'), client)
+    client.send(f"You joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞ".encode('utf-8'))
 
 # Should a user want to leave a room, this will communicate this to the user and the other users
 def leave_room(client):
