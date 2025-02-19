@@ -67,7 +67,7 @@ def remove_client(client):
         client.close
         print(f"{username} has disconnected.")
 
-
+# Handles the three passable commands from the user
 def handle_client(client):
     while True:
         try:
@@ -79,11 +79,11 @@ def handle_client(client):
                 join_room(client, room_name)
 
             # Handels if the client wants to leave a room using /leave
-            elif message == ("/leave"):
+            elif message == "/leave":
                 leave_room(client)
             
             # Handels if the client wants to exit a room using /exit
-            elif message == ("/exit"):
+            elif message == "/exit":
                 remove_client(client)
                 break
 
@@ -97,14 +97,31 @@ def handle_client(client):
             remove_client(client)
             break
 
-def join_room(client):
-    print()
+# Should a user want to join a room, this will communicate this to the user and the other users
+def join_room(client, room_name):
+    current_room = client_rooms.get(client, 'public')
 
+    if current_room != "public":
+        leave_room(client)
+
+    if room_name not in rooms:
+        rooms[room_name] = []
+
+    rooms[room_name].append(client)
+    client_rooms[client] = room_name
+
+    username = usernames.index[clients.index(client)]
+    broadcast(f"{username} has joined the room '{room_name}'.".encode('utf-8'), client)
+    client.send(f"You joined the room '{room_name}'.".encode('utf-8'))
+
+# Should a user want to leave a room, this will communicate this to the user and the other users
 def leave_room(client):
     print()
 
+# Allows the user to choose the color that they will show in the chat room
 def choose_color(client):
     print()
 
+# Actually starts the chatroom server
 def start_server():
     print()
