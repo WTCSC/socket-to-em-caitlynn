@@ -6,5 +6,5 @@ And add better documentation lmao
 
 Fix all of the bugs
 - improper message filtering
-- colored messages not showing
+- when a user in the public room leaves, any in private rooms also leave
 - probably more

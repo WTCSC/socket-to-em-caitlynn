@@ -22,6 +22,7 @@ color_codes = {
     "yellow": "\033[38;5;226m",
     "green": "\033[38;5;40m",
     "cyan": "\033[38;5;51m",
+    "teal": "\033[38;5;30m",
     "light blue": "\033[38;5;81m",
     "blue": "\033[38;5;21m",
     "purple": "\033[38;5;93m",
@@ -135,7 +136,7 @@ def leave_room(client):
 
 # Allows the user to choose the color that they will show in the chat room
 def choose_color(client):
-    color_options = "\nAvailable colors: black, white, pink, red, orange, yellow, green, cyan, light blue, blue, purple"
+    color_options = "\nAvailable colors: black, white, pink, red, orange, yellow, green, cyan, teal, light blue, blue, purple"
     client.send(f"Feel free to chose a color for your messages ₍^ >ヮ<^₎ .ᐟ.ᐟ {color_options}".encode('utf-8'))
 
     color_choice = client.recv(1024).decode('utf-8').lower().strip() 
