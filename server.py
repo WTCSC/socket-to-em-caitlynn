@@ -30,8 +30,11 @@ color_codes = {
 
 # "Broadcasts" aka sends a message to the sender's room
 def broadcast(message, senders_client):
+    # Gets the sender's current room
     senders_room = client_rooms.get(senders_client, 'public')
 
+    # This will send a message to everyone in the same room as the sender- minus the sender of course
+    # For if the sender is in the public room
     if senders_room == 'public':
         for client in rooms['public']:
             if client != senders_client:
@@ -40,6 +43,7 @@ def broadcast(message, senders_client):
                 except:
                     remove_client(client)
     
+    # For is the sender is in a private room
     elif senders_room in rooms:
         for client in rooms[senders_room]:
             if client != senders_client:
@@ -47,7 +51,6 @@ def broadcast(message, senders_client):
                     client.send(message)
                 except:
                     remove_client(client)
-
 
 # Should a user choose to leave this will remove them from their current room, as well as all structures
 def remove_client(client):
@@ -116,12 +119,63 @@ def join_room(client, room_name):
 
 # Should a user want to leave a room, this will communicate this to the user and the other users
 def leave_room(client):
-    print()
+    room = client_rooms.get(client, 'public')
+    if room != "public":
+        rooms[room].remove(client)
+        username = usernames[clients.index(client)]
+        broadcast(f"{username} has left the room  (~‾‾∇‾‾  )~ bye~".encode('utf-8'), client)
+        client_rooms[client] = "public"
+        client.send(f"You've returned to the public chat!".encode('utf-8'), client)
 
 # Allows the user to choose the color that they will show in the chat room
 def choose_color(client):
-    print()
+    color_options = "\nAvailable colors: black, white, pink, red, orange, yellow, green, cyan, light blue, blue, purple"
+    client.send(f"Feel free to chose a color for your messages ₍^ >ヮ<^₎ .ᐟ.ᐟ {color_options}".encode('utf-8'))
+
+    color_choice = client.recv(1024).decode('utf-8').lower()
+    if color_choice not in color_codes:
+        color_choice = "white"
+        client.send("White was chosen since an invalid color choice was provided ദ്ദി ( ᵔ ᗜ ᵔ )".encode('utc-8'))
+
+    index = clients.index(client)
+    colors[index] = color_codes[color_choice]
 
 # Actually starts the chatroom server
 def start_server():
-    print()
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((Host, Port))
+    server.listen()
+
+    print(f"Now listening on {Host} : {Port}")
+
+    try:
+        while True:
+            client, address = server.accept()
+            print(f"There's a new connection from {address}₍^ >ヮ<^₎ .ᐟ.ᐟ")
+
+            client.send('Username'.encode('utf-8'))
+            username = client.recv(1024).decode('utf.8')
+            usernames.append(username)
+            clients.append(client)
+            colors.append(color_codes['white'])
+
+            rooms['public'].append(client)
+            client_rooms[client] = "public"
+
+            print(f"Username of the client: {username}")
+            broadcast(f"{username} has joined the public chat ₍^ >ヮ<^₎ .ᐟ.ᐟ".encode('utf-8'), client)
+
+            choose_color(client)
+
+            client.send("You are now connected to the server ₍^ >ヮ<^₎ .ᐟ.ᐟ \nHere are some commands:\n join <room> \n/leave \n/exit")
+
+            thread = threading.Thread(target=handle_client, args=(client,))
+            thread.start()
+
+    except KeyboardInterrupt:
+        print("\nThe server is shutting down ૮(˶ㅠ︿ㅠ)ა")
+        server.close
+        sys.exit(0)
+
+# To actually run the server
+start_server()

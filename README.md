@@ -3,3 +3,5 @@
 Make sure to add a video !
 
 And add better documentation lmao
+
+Fix the error where public messages will send into private ones if possible (~line 38)
