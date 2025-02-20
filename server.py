@@ -113,7 +113,7 @@ def join_room(client, room_name):
     rooms[room_name].append(client)
     client_rooms[client] = room_name
 
-    username = usernames.index[clients.index(client)]
+    username = usernames[clients.index(client)]
     broadcast(f"{username} has joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞ".encode('utf-8'), client)
     client.send(f"You joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞ".encode('utf-8'))
 
@@ -138,13 +138,22 @@ def choose_color(client):
     color_options = "\nAvailable colors: black, white, pink, red, orange, yellow, green, cyan, light blue, blue, purple"
     client.send(f"Feel free to chose a color for your messages ₍^ >ヮ<^₎ .ᐟ.ᐟ {color_options}".encode('utf-8'))
 
-    color_choice = client.recv(1024).decode('utf-8').lower()
-    if color_choice not in color_codes:
-        color_choice = "white"
-        client.send("White was chosen since an invalid color choice was provided ദ്ദി ( ᵔ ᗜ ᵔ )".encode('utf-8'))
+    color_choice = client.recv(1024).decode('utf-8').lower().strip() 
 
-    index = clients.index(client)
-    colors[index] = color_codes[color_choice]
+    print(f"Debug - Received color choice: '{color_choice}'")
+
+    
+
+    if color_choice in color_codes:
+        index = clients.index(client)
+        colors[index] = color_codes[color_choice]
+        client.send(f"Your color has been set to {color_choice} ദ്ദി ( ᵔ ᗜ ᵔ )".encode('utf-8'))
+
+    else:
+        index = clients.index(client)
+        colors[index] = color_codes["white"]
+        client.send("Since an invalid color choice was given, your color is white ദ്ദി ( ᵔ ᗜ ᵔ )".encode('utf-8'))
+
 
 # Actually starts the chatroom server
 def start_server():
@@ -161,7 +170,6 @@ def start_server():
                 client, address = server.accept()
                 print(f"There's a new connection from {address}₍^ >ヮ<^₎ .ᐟ.ᐟ")
 
-                client.send('Username'.encode('utf-8'))
                 username = client.recv(1024).decode('utf-8')
                 usernames.append(username)
                 clients.append(client)
@@ -175,7 +183,7 @@ def start_server():
 
                 choose_color(client)
 
-                client.send("You are now connected to the server ₍^ >ヮ<^₎ .ᐟ.ᐟ \nHere are some commands:\n join <room> \n/leave \n/exit".encode('utf-8'))
+                client.send("You are now connected to the server ₍^ >ヮ<^₎ .ᐟ.ᐟ \nHere are some commands:\n join <room> (to join a room)\n/leave (to leave a room)\n/exit (to leave the server)".encode('utf-8'))
 
                 thread = threading.Thread(target=handle_client, args=(client,))
                 thread.start()

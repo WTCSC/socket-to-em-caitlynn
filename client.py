@@ -44,7 +44,7 @@ def send_that_message():
                 sys.exit(0)
 
             else:
-                client.send(f"{username}: {message}".encode('utf-8'))
+                client.send(f"{message}".encode('utf-8'))
                 sys.stdout.write('\r' + ' ' * 80 + '\r')
                 sys.stdout.flush()
 
