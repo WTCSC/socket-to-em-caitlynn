@@ -33,24 +33,23 @@ def broadcast(message, senders_client):
     # Gets the sender's current room
     senders_room = client_rooms.get(senders_client, 'public')
 
-    # This will send a message to everyone in the same room as the sender- minus the sender of course
-    # For if the sender is in the public room
-    if senders_room == 'public':
-        for client in rooms['public']:
-            if client != senders_client:
-                try:
-                    client.send(message)
-                except:
-                    remove_client(client)
+    print(f"Sender's room: {senders_room}")
+    print(f"All rooms: {rooms}")
+    print(f"Client room mappings: {client_rooms}")
+
+    viewers = []
+
+    # Finds everyone in the same room as the sender
+    if senders_room in rooms:
+        viewers = rooms[senders_room]
     
-    # For is the sender is in a private room
-    elif senders_room in rooms:
-        for client in rooms[senders_room]:
-            if client != senders_client:
-                try:
-                    client.send(message)
-                except:
-                    remove_client(client)
+    # This will send a message to everyone in the same room as the sender- minus the sender of course
+    for client in viewers:
+        if client != senders_client:
+            try:
+                client.send(message)
+            except:
+                remove_client(client)
 
 # Should a user choose to leave this will remove them from their current room, as well as all structures
 def remove_client(client):
@@ -104,8 +103,9 @@ def handle_client(client):
 def join_room(client, room_name):
     current_room = client_rooms.get(client, 'public')
 
-    if current_room != "public":
-        leave_room(client)
+    # Removes the client from their current room
+    if client in rooms[current_room]:
+        rooms[current_room].remove(client)
 
     if room_name not in rooms:
         rooms[room_name] = []
@@ -120,11 +120,17 @@ def join_room(client, room_name):
 # Should a user want to leave a room, this will communicate this to the user and the other users
 def leave_room(client):
     room = client_rooms.get(client, 'public')
+
     if room != "public":
-        rooms[room].remove(client)
+        
+        if client in rooms[room]:
+            rooms[room].remove(client)
+        
         username = usernames[clients.index(client)]
         broadcast(f"{username} has left the room  (~‾‾∇‾‾  )~ bye~".encode('utf-8'), client)
+        
         client_rooms[client] = "public"
+        rooms['public'].append(client)
         client.send(f"You've returned to the public chat!".encode('utf-8'), client)
 
 # Allows the user to choose the color that they will show in the chat room
