@@ -3,7 +3,7 @@ import sys
 import threading
 
 # Some server settings
-Host = '0.0.0.0'
+Host = '127.0.0.1'
 Port = 1270
 
 clients = []
@@ -55,7 +55,7 @@ def broadcast(message, senders_client):
 def remove_client(client):
     for client in clients:
         index = clients.index(client)
-        username = usernames.index
+        username = usernames[index]
         clients.remove(client)
         usernames.pop(index)
         colors.pop(index)
@@ -66,7 +66,7 @@ def remove_client(client):
             broadcast(f"{username} has left the chat  (~‾‾∇‾‾  )~ bye~".encode('utf-8'), client)
 
         del client_rooms[client]
-        client.close
+        client.close()
         print(f"{username} has disconnected  (~‾‾∇‾‾  )~ bye~")
 
 # Handles the three passable commands from the user
@@ -91,7 +91,7 @@ def handle_client(client):
 
             else:
                 username = usernames[clients.index(client)]
-                color = colors[client.index(client)]
+                color = colors[clients.index(client)]
                 colored_message = f"{color}{username}: {message}{color_codes['reset']}"
                 broadcast(colored_message.encode('utf-8'), client)
 
@@ -131,7 +131,7 @@ def leave_room(client):
         
         client_rooms[client] = "public"
         rooms['public'].append(client)
-        client.send(f"You've returned to the public chat!".encode('utf-8'), client)
+        client.send(f"You've returned to the public chat!".encode('utf-8'))
 
 # Allows the user to choose the color that they will show in the chat room
 def choose_color(client):
@@ -141,7 +141,7 @@ def choose_color(client):
     color_choice = client.recv(1024).decode('utf-8').lower()
     if color_choice not in color_codes:
         color_choice = "white"
-        client.send("White was chosen since an invalid color choice was provided ദ്ദി ( ᵔ ᗜ ᵔ )".encode('utc-8'))
+        client.send("White was chosen since an invalid color choice was provided ദ്ദി ( ᵔ ᗜ ᵔ )".encode('utf-8'))
 
     index = clients.index(client)
     colors[index] = color_codes[color_choice]
@@ -151,36 +151,40 @@ def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((Host, Port))
     server.listen()
+    server.settimeout(1)
 
     print(f"Now listening on {Host} : {Port}")
 
     try:
         while True:
-            client, address = server.accept()
-            print(f"There's a new connection from {address}₍^ >ヮ<^₎ .ᐟ.ᐟ")
+            try:
+                client, address = server.accept()
+                print(f"There's a new connection from {address}₍^ >ヮ<^₎ .ᐟ.ᐟ")
 
-            client.send('Username'.encode('utf-8'))
-            username = client.recv(1024).decode('utf.8')
-            usernames.append(username)
-            clients.append(client)
-            colors.append(color_codes['white'])
+                client.send('Username'.encode('utf-8'))
+                username = client.recv(1024).decode('utf-8')
+                usernames.append(username)
+                clients.append(client)
+                colors.append(color_codes['white'])
 
-            rooms['public'].append(client)
-            client_rooms[client] = "public"
+                rooms['public'].append(client)
+                client_rooms[client] = "public"
 
-            print(f"Username of the client: {username}")
-            broadcast(f"{username} has joined the public chat ₍^ >ヮ<^₎ .ᐟ.ᐟ".encode('utf-8'), client)
+                print(f"Username of the client: {username}")
+                broadcast(f"{username} has joined the public chat ₍^ >ヮ<^₎ .ᐟ.ᐟ".encode('utf-8'), client)
 
-            choose_color(client)
+                choose_color(client)
 
-            client.send("You are now connected to the server ₍^ >ヮ<^₎ .ᐟ.ᐟ \nHere are some commands:\n join <room> \n/leave \n/exit")
+                client.send("You are now connected to the server ₍^ >ヮ<^₎ .ᐟ.ᐟ \nHere are some commands:\n join <room> \n/leave \n/exit".encode('utf-8'))
 
-            thread = threading.Thread(target=handle_client, args=(client,))
-            thread.start()
+                thread = threading.Thread(target=handle_client, args=(client,))
+                thread.start()
+            except socket.timeout:
+                pass
 
     except KeyboardInterrupt:
         print("\nThe server is shutting down ૮(˶ㅠ︿ㅠ)ა")
-        server.close
+        server.close()
         sys.exit(0)
 
 # To actually run the server
