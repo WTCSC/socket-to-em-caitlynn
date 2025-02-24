@@ -1,6 +1,7 @@
 import socket
 import sys
 import threading
+from loguru import logger
 
 # Some server settings
 Host = '127.0.0.1'

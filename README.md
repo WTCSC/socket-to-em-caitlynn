@@ -11,3 +11,4 @@ Enhancements to make:
 - Clean up code
 - New features (ex. more commands: color change any time, list room inhabitants, open rooms, locked (password) access rooms, help)
 - Better logging or smth (use logging or loguru for logging)
+- Custom ip + port choices
