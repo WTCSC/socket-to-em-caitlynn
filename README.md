@@ -2,10 +2,12 @@
 
 Make sure to add a video !
 
-And add better documentation lmao
+And add better documentation (comment the code) lmao
 
-Fix all of the bugs
-- improper message filtering
-- when a user in the public room leaves, any in private rooms also leave
-- probably more
-- exiting from a room makes all users leave (should only kick the one person out)
+Write this read me
+
+Enhancements to make:
+- Reformat code
+- Clean up code
+- New features (ex. more commands: color change any time, list room inhabitants, open rooms, locked (password) access rooms, help)
+- Better logging or smth (use logging or loguru for logging)
