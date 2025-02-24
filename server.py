@@ -57,9 +57,6 @@ def remove_client(client):
     for client in clients:
         index = clients.index(client)
         username = usernames[index]
-        clients.remove(client)
-        usernames.pop(index)
-        colors.pop(index)
         
         room = client_rooms.get(client, 'public')
         if room in rooms and client in rooms[room]:
@@ -67,6 +64,11 @@ def remove_client(client):
             broadcast(f"{username} has left the chat  (~‾‾∇‾‾  )~ bye~".encode('utf-8'), client)
 
         del client_rooms[client]
+
+        clients.remove(client)
+        usernames.pop(index)
+        colors.pop(index)
+
         client.close()
         print(f"{username} has disconnected  (~‾‾∇‾‾  )~ bye~")
 
