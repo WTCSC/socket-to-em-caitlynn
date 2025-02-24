@@ -76,16 +76,16 @@ def handle_client(client):
         try:
             message = client.recv(1024).decode('utf-8')
 
-        # Handels if the client wants to join a room using /join
+        # Handles if the client wants to join a room using /join
             if message.startswith("/join "):
                 room_name = message.split(" ", 1)[1].strip()
                 join_room(client, room_name)
 
-            # Handels if the client wants to leave a room using /leave
+            # Handles if the client wants to leave a room using /leave
             elif message == "/leave":
                 leave_room(client)
             
-            # Handels if the client wants to exit a room using /exit
+            # Handles if the client wants to exit a room using /exit
             elif message == "/exit":
                 remove_client(client)
                 break
@@ -116,7 +116,7 @@ def join_room(client, room_name):
 
     username = usernames[clients.index(client)]
     broadcast(f"{username} has joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞ".encode('utf-8'), client)
-    client.send(f"You joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞ".encode('utf-8'))
+    client.send(f"You joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞBe sure to use /leave to leave the room".encode('utf-8'))
 
 # Should a user want to leave a room, this will communicate this to the user and the other users
 def leave_room(client):
@@ -157,7 +157,7 @@ def choose_color(client):
 
 
 # Actually starts the chatroom server
-def start_server():
+def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((Host, Port))
     server.listen()
@@ -197,4 +197,5 @@ def start_server():
         sys.exit(0)
 
 # To actually run the server
-start_server()
+if __name__=="__main__":
+    main()

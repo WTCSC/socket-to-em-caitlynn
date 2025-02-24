@@ -8,3 +8,4 @@ Fix all of the bugs
 - improper message filtering
 - when a user in the public room leaves, any in private rooms also leave
 - probably more
+- exiting from a room makes all users leave (should only kick the one person out)

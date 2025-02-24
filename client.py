@@ -54,7 +54,7 @@ def send_that_message():
         print("You disconnected from the server (~‾‾∇‾‾  )~ bye~")
         sys.exit(0)
 
-receive_thread = threading.Thread(target=get_that_message, daemon=True)
+receive_thread = threading.Thread(target=get_that_message)
 receive_thread.start()
 
 send_thread = threading.Thread(target=send_that_message)
