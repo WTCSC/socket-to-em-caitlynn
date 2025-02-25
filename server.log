@@ -1,0 +1,40 @@
+2025-02-25 14:50:18.541 | SUCCESS  | __main__:start_dat_server:191 - Server running on 127.0.0.1:1270
+2025-02-25 14:50:24.783 | INFO     | __main__:start_dat_server:196 - There's a new connection from ('127.0.0.1', 61889)₍^ >ヮ<^₎ .ᐟ.ᐟ
+2025-02-25 14:50:24.783 | DEBUG    | __main__:start_dat_server:207 - Username of the client: sh
+2025-02-25 14:50:24.785 | DEBUG    | __main__:broadcast:63 - Sender's room: public
+2025-02-25 14:50:24.785 | DEBUG    | __main__:broadcast:64 - All rooms: {'public': [<socket.socket fd=1008, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61889)>]}
+2025-02-25 14:50:24.785 | DEBUG    | __main__:broadcast:65 - Client room mappings: {<socket.socket fd=1008, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61889)>: 'public'}
+2025-02-25 14:50:28.448 | SUCCESS  | __main__:start_dat_server:191 - Server running on 127.0.0.1:1270
+2025-02-25 14:50:30.465 | WARNING  | __main__:start_dat_server:222 - 
+The server is shutting down ૮(˶ㅠ︿ㅠ)ა
+2025-02-25 14:50:47.263 | DEBUG    | __main__:choose_color:171 - Received color choice: 'blue'
+2025-02-25 14:50:47.263 | INFO     | __main__:start_dat_server:196 - There's a new connection from ('127.0.0.1', 61890)₍^ >ヮ<^₎ .ᐟ.ᐟ
+2025-02-25 14:50:59.501 | DEBUG    | __main__:broadcast:63 - Sender's room: public
+2025-02-25 14:50:59.501 | DEBUG    | __main__:broadcast:64 - All rooms: {'public': []}
+2025-02-25 14:50:59.502 | DEBUG    | __main__:broadcast:65 - Client room mappings: {<socket.socket fd=1008, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61889)>: 'public'}
+2025-02-25 14:50:59.502 | INFO     | __main__:remove_client:98 - sh has disconnected  (~‾‾∇‾‾  )~ bye~
+2025-02-25 14:51:23.345 | SUCCESS  | __main__:start_dat_server:191 - Server running on 127.0.0.1:1270
+2025-02-25 14:51:29.312 | INFO     | __main__:start_dat_server:196 - There's a new connection from ('127.0.0.1', 61898)₍^ >ヮ<^₎ .ᐟ.ᐟ
+2025-02-25 14:51:29.313 | DEBUG    | __main__:start_dat_server:207 - Username of the client: Ash
+2025-02-25 14:51:29.314 | DEBUG    | __main__:broadcast:63 - Sender's room: public
+2025-02-25 14:51:29.314 | DEBUG    | __main__:broadcast:64 - All rooms: {'public': [<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>]}
+2025-02-25 14:51:29.314 | DEBUG    | __main__:broadcast:65 - Client room mappings: {<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>: 'public'}
+2025-02-25 14:51:32.612 | DEBUG    | __main__:choose_color:171 - Received color choice: 'purple'
+2025-02-25 14:51:37.668 | INFO     | __main__:start_dat_server:196 - There's a new connection from ('127.0.0.1', 61899)₍^ >ヮ<^₎ .ᐟ.ᐟ
+2025-02-25 14:51:37.673 | DEBUG    | __main__:start_dat_server:207 - Username of the client: Yuki
+2025-02-25 14:51:37.674 | DEBUG    | __main__:broadcast:63 - Sender's room: public
+2025-02-25 14:51:37.674 | DEBUG    | __main__:broadcast:64 - All rooms: {'public': [<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>, <socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>]}
+2025-02-25 14:51:37.675 | DEBUG    | __main__:broadcast:65 - Client room mappings: {<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>: 'public', <socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>: 'public'}
+2025-02-25 14:51:38.681 | DEBUG    | __main__:choose_color:171 - Received color choice: 'pink'
+2025-02-25 14:51:39.951 | DEBUG    | __main__:broadcast:63 - Sender's room: public
+2025-02-25 14:51:39.951 | DEBUG    | __main__:broadcast:64 - All rooms: {'public': [<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>, <socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>]}
+2025-02-25 14:51:39.951 | DEBUG    | __main__:broadcast:65 - Client room mappings: {<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>: 'public', <socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>: 'public'}
+2025-02-25 14:51:44.472 | DEBUG    | __main__:broadcast:63 - Sender's room: public
+2025-02-25 14:51:44.473 | DEBUG    | __main__:broadcast:64 - All rooms: {'public': [<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>, <socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>]}
+2025-02-25 14:51:44.473 | DEBUG    | __main__:broadcast:65 - Client room mappings: {<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>: 'public', <socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>: 'public'}
+2025-02-25 14:51:46.992 | DEBUG    | __main__:broadcast:63 - Sender's room: public
+2025-02-25 14:51:46.992 | DEBUG    | __main__:broadcast:64 - All rooms: {'public': [<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>, <socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>]}
+2025-02-25 14:51:46.993 | DEBUG    | __main__:broadcast:65 - Client room mappings: {<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>: 'public', <socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>: 'public'}
+2025-02-25 14:52:13.573 | DEBUG    | __main__:broadcast:63 - Sender's room: public
+2025-02-25 14:52:13.573 | DEBUG    | __main__:broadcast:64 - All rooms: {'public': [<socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>]}
+2025-02-25 14:52:13.573 | DEBUG    | __main__:broadcast:65 - Client room mappings: {<socket.socket fd=1084, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61898)>: 'public', <socket.socket fd=1220, family=2, type=1, proto=0, laddr=('127.0.0.1', 1270), raddr=('127.0.0.1', 61899)>: 'public'}

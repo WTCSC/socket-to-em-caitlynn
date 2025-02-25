@@ -219,7 +219,7 @@ class Server:
                     pass
 
         except KeyboardInterrupt:
-            logger.warning("\nThe server is shutting down ૮(˶ㅠ︿ㅠ)ა")
+            logger.warning("The server is shutting down ૮(˶ㅠ︿ㅠ)ა")
             self.server.close()
             sys.exit(0)
 
