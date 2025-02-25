@@ -160,8 +160,6 @@ def choose_color(client):
 
     print(f"Debug - Received color choice: '{color_choice}'")
 
-    
-
     if color_choice in color_codes:
         index = clients.index(client)
         colors[index] = color_codes[color_choice]
