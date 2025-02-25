@@ -7,8 +7,8 @@ And add better documentation (comment the code) lmao
 Write this read me
 
 Enhancements to make:
-- Reformat code
-- Clean up code
+- Reformat code (working on)
+- Clean up code (working on)
 - New features (ex. more commands: color change any time, list room inhabitants, open rooms, locked (password) access rooms, help)
-- Better logging or smth (use logging or loguru for logging)
+- Better logging or smth (working on w loguru)
 - Custom ip + port choices
