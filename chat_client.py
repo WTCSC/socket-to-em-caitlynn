@@ -103,7 +103,7 @@ class Client:
         send_thread = threading.Thread(target=self.send_dat_message)
         send_thread.start()
 
-# Makes the client and connects to the server :D
+# Makes the client and connects to the server
 def main():
     client = Client()
     username = input("Enter your username:")
