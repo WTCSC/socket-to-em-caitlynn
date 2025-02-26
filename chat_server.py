@@ -267,7 +267,7 @@ class Server:
             self.server.close()
             sys.exit(0)
 
-# Executes main and makes the whole thing run
+# Executes main and makes the whole thing run :D
 def main():
     server = Server()
     server.start_dat_server()
