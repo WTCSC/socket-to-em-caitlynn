@@ -1,8 +1,0 @@
-2025-02-25 14:50:24.782 | DEBUG    | __main__:make_dat_connection:32 - Attempting a connection to 127.0.0.1:1270
-2025-02-25 14:50:24.783 | INFO     | __main__:make_dat_connection:37 - Connected as the user sh
-2025-02-25 14:50:34.601 | DEBUG    | __main__:make_dat_connection:32 - Attempting a connection to 127.0.0.1:1270
-2025-02-25 14:50:34.603 | INFO     | __main__:make_dat_connection:37 - Connected as the user Hi
-2025-02-25 14:51:29.310 | DEBUG    | __main__:make_dat_connection:32 - Attempting a connection to 127.0.0.1:1270
-2025-02-25 14:51:29.312 | INFO     | __main__:make_dat_connection:37 - Connected as the user Ash
-2025-02-25 14:51:37.641 | DEBUG    | __main__:make_dat_connection:32 - Attempting a connection to 127.0.0.1:1270
-2025-02-25 14:51:37.668 | INFO     | __main__:make_dat_connection:37 - Connected as the user Yuki

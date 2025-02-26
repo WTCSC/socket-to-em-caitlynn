@@ -79,7 +79,7 @@ class Server:
         
         # Might also need to remove this lock later :D
         with self.lock:
-            for client in self.clients:
+            if client in self.clients:
                 index = self.clients.index(client)
                 username = self.usernames[index]
                 
@@ -88,7 +88,8 @@ class Server:
                     self.rooms[room].remove(client)
                     self.broadcast(f"{username} has left the chat  (~‾‾∇‾‾  )~ bye~".encode('utf-8'), client)
 
-                del self.client_rooms[client]
+                if client in self.client_rooms:
+                    del self.client_rooms[client]
 
                 self.clients.remove(client)
                 self.usernames.pop(index)
@@ -146,13 +147,12 @@ class Server:
             client.send(f"You joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞBe sure to use /leave to leave the room".encode('utf-8'))
 
     def leave_room(self, client):
-        with self.lock:
-            room = self.client_rooms.get(client, 'public')
+        room = self.client_rooms.get(client, 'public')
 
-            if room != "public":
+        if room != "public":
                 
-                if client in self.rooms[room]:
-                    self.rooms[room].remove(client)
+            if client in self.rooms[room]:
+                self.rooms[room].remove(client)
 
             username = self.usernames[self.clients.index(client)]
             self.broadcast(f"{username} has left the room  (~‾‾∇‾‾  )~ bye~".encode('utf-8'), client)
