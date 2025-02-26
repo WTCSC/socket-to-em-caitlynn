@@ -26,5 +26,4 @@ To get a client up and running it's also just as simple as typing this command: 
 
 Theres a billion cool features that I put in. Well maybe not a billion but a few!
 
-- __Name Coloring.__ Who doesn't like a little bit of color. Aside from making the chat room a little more colorful and engaging, it helps you differntiate your messages from others in the room! The avalible colors are as follows: `black, white, pink, red, orange, yellow, green, cyan, teal, light blue, blue, purple.` There's a color chart below for reference:
-        ![color_example](media/colors.png)
+- __Name Coloring.__ Who doesn't like a little bit of color. Aside from making the chat room a little more colorful and engaging, it helps you differntiate your messages from others in the room! The avalible colors are as follows: `black, white, pink, red, orange, yellow, green, cyan, teal, light blue, blue, purple.` There's a color chart located in `color.py` as a reference. Take advantage of the beauty of ANSI Codes and make the chat a little more fun!
