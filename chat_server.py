@@ -44,7 +44,8 @@ class Server:
     commands = {
         "/join": "To join a private room use /join <room name>",
         "/leave": "To leave a private room and return to the public chat",
-        "/exit": "To completely leave the server (disconnect from it)"
+        "/exit": "To completely leave the server (disconnect from it)",
+        "/list": "To list all of the private rooms that currently exist"
         # Can add more later if extra features are added
     }
 
@@ -52,7 +53,7 @@ class Server:
         self.clients = [] # Stores clients' sockets
         self.usernames = [] # Stores client usernames
         self.colors = [] # Stores client colors
-        self.rooms = {'public': []} # Tracks which client is in which room
+        self.rooms = {'Public Chat': []} # Tracks which client is in which room
         self.client_rooms = {} # Tracks which room each client is in
         self.server = None # The server starts off with no listening socket
         self.lock = threading.Lock() # Threading lock just to be safe :)
@@ -61,7 +62,7 @@ class Server:
     def broadcast_dat_message(self, message, senders_client):
 
             # Gets the sender's room which defaults to public
-            senders_room = self.client_rooms.get(senders_client, 'public')
+            senders_room = self.client_rooms.get(senders_client, 'Public Chat')
 
             # Log Dmessages sent at a debug level
             logger.debug(f"Sender's room: {senders_room}")
@@ -90,7 +91,7 @@ class Server:
                 username = self.usernames[index]
                 
                 # Basically removes the client from the list of people in a room and informs everyone else about it
-                room = self.client_rooms.get(client, 'public')
+                room = self.client_rooms.get(client, 'Public Chat')
                 if room in self.rooms and client in self.rooms[room]:
                     self.rooms[room].remove(client)
                     self.broadcast_dat_message(f"{username} has left the chat  (~‾‾∇‾‾  )~ bye~".encode('utf-8'), client)
@@ -129,6 +130,9 @@ class Server:
                 elif message == "/exit":
                     self.remove_dat_client(client)
                     break
+
+                elif message == "/list":
+                    self.list_dem_rooms(client)
                 
                 # This is just for regular message handling
                 else:
@@ -147,7 +151,7 @@ class Server:
     def join_dat_room(self, client, room_name):
         with self.lock:
             # Gets the current room of the client
-            current_room = self.client_rooms.get(client, 'public')
+            current_room = self.client_rooms.get(client, 'Public Chat')
 
             # Removes the client from their current room
             if client in self.rooms[current_room]:
@@ -164,15 +168,16 @@ class Server:
             # Communicates their joining to other users in the room
             username = self.usernames[self.clients.index(client)]
             self.broadcast_dat_message(f"{username} has joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞ".encode('utf-8'), client)
+            logger.info(f"{username} joined the room '{current_room}'")
             client.send(f"You joined the room {room_name} |˶˙ᵕ˙ )ﾉﾞBe sure to use /leave to leave the room".encode('utf-8'))
 
     # Moves a client back to the public room if they aren't there already
     def leave_dat_room(self, client):
         # Gets the current room of the client
-        current_room = self.client_rooms.get(client, 'public')
+        current_room = self.client_rooms.get(client, 'Public Chat')
 
         # Checks to make sure the client isn't in public
-        if current_room != "public":
+        if current_room != "Public Chat":
             
             # Removes the clients from their current room
             if client in self.rooms[current_room]:
@@ -183,9 +188,29 @@ class Server:
             self.broadcast_dat_message(f"{username} has left the room  (~‾‾∇‾‾  )~ bye~".encode('utf-8'), client)
 
             # Moves and updates the client's room in real time and within tracking interfacesf
-            self.client_rooms[client] = "public"
-            self.rooms['public'].append(client)
+            self.client_rooms[client] = "Public Chat"
+            self.rooms['Public Chat'].append(client)
+            logger.info(f"{username} left the room '{current_room}'")
             client.send(f"You've returned to the public chat!".encode('utf-8'))
+
+    # Shows the client all of the private rooms and the number of people in each one
+    def list_dem_rooms(self, client):
+        with self.lock:
+            try:
+                # Starts a list for all of the rooms
+                room_list = []
+                # Takes each room in the rooms dictonary and also gives the number of people in each room
+                for room, clients in self.rooms.items():
+                    room_list.append(f"{room} ({len(clients)} users)")
+
+                # Formats and sends the message to the client
+                message = f"Open rooms: {', '.join(room_list)}"
+                client.send(message.encode('utf-8'))
+            
+            # If it fails, remove the client and log the error
+            except Exception as e:
+                logger.error(f"An error occured when attempting to list open rooms:{e}")
+                self.remove_dat_client(client)
 
     # Handles the client choosing their color
     def choose_color(self, client):
@@ -239,8 +264,8 @@ class Server:
                     self.colors.append(self.color_codes['white'])
 
                     # Adds the client to the public room by default
-                    self.rooms['public'].append(client)
-                    self.client_rooms[client] = "public"
+                    self.rooms['Public Chat'].append(client)
+                    self.client_rooms[client] = "Public Chat"
 
                     # Logs and communicates the connection to other clients in the room
                     logger.debug(f"Username of the client: {username}")
@@ -251,7 +276,7 @@ class Server:
                     self.choose_color(client)
 
                     # Tells the client that they've conneted to the server and gives them the basic set of commands
-                    client.send("You are now connected to the server ₍^ >ヮ<^₎ .ᐟ.ᐟ \nHere are some commands:\n join <room> (to join a room)\n/leave (to leave a room)\n/exit (to leave the server)".encode('utf-8'))
+                    client.send("You are now connected to the server ₍^ >ヮ<^₎ .ᐟ.ᐟ \nHere are some commands:\n /join <room> (to join a room)\n/leave (to leave a room)\n/exit (to leave the server)\n/list (to list all of the open rooms)".encode('utf-8'))
 
                     # Starts a thread for the client
                     thread = threading.Thread(target=self.handle_dat_client, args=(client,))

@@ -20,10 +20,25 @@ To set up the server all you have to do it run one basic command: `python3 chat_
 
 ### Setting up the client
 
-To get a client up and running it's also just as simple as typing this command: `python3 chat_client.py` This will connect you to the server, which has to be up first by the way. From there it will ask you for your username and a color choice from a lovely list of colors.
+To get a client up and running it's also just as simple as typing this command: `python3 chat_client.py` This will connect you to the server, which has to be up first by the way. From there it will ask you for your username and a color choice from a lovely list of colors. There's also some client side commands:
+    
+1) `/join <room name>` This is used to join an existing private room or make one for yourself.
+2) `/leave` This is used to leave the private room and go back to the public chat.
+3) `/exit` This is used to leave the server (disconnect it). You can use it from anywhere!
+4) `/list` This is used to list all of the rooms that are opened in the sever. It will also list the number of people in each room.
 
 ## Features
 
 Theres a billion cool features that I put in. Well maybe not a billion but a few!
 
-- __Name Coloring.__ Who doesn't like a little bit of color. Aside from making the chat room a little more colorful and engaging, it helps you differntiate your messages from others in the room! The avalible colors are as follows: `black, white, pink, red, orange, yellow, green, cyan, teal, light blue, blue, purple.` There's a color chart located in `color.py` as a reference. Take advantage of the beauty of ANSI Codes and make the chat a little more fun!
+- __Name Coloring.__ Who doesn't like a little bit of color. Aside from making the chat room a little more colorful and engaging, it helps you differntiate your messages from others in the room! The avalible colors are as follows: `black, white, pink, red, orange, yellow, green, cyan, teal, light blue, blue, purple.` There's a color chart located in `color.py` as a reference and below. Take advantage of the beauty of ANSI Codes and make the chat a little more fun!
+
+    ![color_sample](media/colors2.png)
+
+- __Custom Usernames.__ Along with epic message coloring there's also the option to pick your username upon joining the server.Isn't that just so neat?
+
+- __Private Rooms.__ Because this is a ~~Discord knock off~~ a really cool chat room, there's an option to create and join private rooms! Like DMs where anyone can join at any time, because thats how not so private rooms work.
+
+## Logging
+
+Like I mentioned, this script is dependent on `Loguru` for it's logging. Most of the logging happens on the server side of things, but both client and server scripts have logging that will log to a text file. And since I'm super amazing the text file will __cap at 500 KB and will delete every week.__
