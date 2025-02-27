@@ -35,7 +35,7 @@ Theres a billion cool features that I put in. Well maybe not a billion but a few
 
     ![color_sample](media/colors2.png)
 
-- __Custom Usernames.__ Along with epic message coloring there's also the option to pick your username upon joining the server.Isn't that just so neat?
+- __Custom Usernames.__ Along with epic message coloring there's also the option to pick your username upon joining the server. Isn't that just so neat?
 
 - __Private Rooms.__ Because this is a ~~Discord knock off~~ a really cool chat room, there's an option to create and join private rooms! Like DMs where anyone can join at any time, because thats how not so private rooms work.
 
