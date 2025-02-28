@@ -8,7 +8,7 @@ https://github.com/user-attachments/assets/5f02a561-2a1e-4ba5-a0cb-04597fac033b
 
 It offers the most basic of basic chat room experience. Nothing but straight back and forth chatting with, get this, a choice of color for your messages. (Woah so revolutionary).
 
-(And for the record, the video had a voice over but... VSCode doesn't support AAC audio so... if you want here's the voice over version: https://drive.google.com/file/d/1U0KJpO9cTs5hgKKmNH668jN6lW1biJ9r/view?usp=sharing)
+_Sorry if the audio is a little quiet (╥ᆺ╥；)_
 
 ## Set Up and Installing
 
