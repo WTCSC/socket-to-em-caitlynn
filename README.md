@@ -4,9 +4,13 @@
 
 # Server Client Chat Room
 
-Have you maybe, just maybe, ever want to use a chatroom with your friends? ~~Well why not use Discord?~~ Well why not use this server-client chat room! It's just a basic server and client chat room that connects clients to the server. 
+Have you maybe, just maybe, ever want to use a chatroom with your friends? ~~Well why not use Discord?~~ Well why not use this server-client chat room! It's just a basic server and client chat room that connects clients to the server. Here's a demo:
+
+<video src="media/Demo.mp4" controls></video>
 
 It offers the most basic of basic chat room experience. Nothing but straight back and forth chatting with, get this, a choice of color for your messages. (Woah so revolutionary).
+
+(And for the record, the video had a voice over but... VSCode doesn't support AAC audio so... if you want here's the voice over version: https://drive.google.com/file/d/1U0KJpO9cTs5hgKKmNH668jN6lW1biJ9r/view?usp=sharing)
 
 ## Set Up and Installing
 

@@ -276,7 +276,7 @@ class Server:
                     self.choose_color(client)
 
                     # Tells the client that they've conneted to the server and gives them the basic set of commands
-                    client.send("You are now connected to the server ₍^ >ヮ<^₎ .ᐟ.ᐟ \nHere are some commands:\n /join <room> (to join a room)\n/leave (to leave a room)\n/exit (to leave the server)\n/list (to list all of the open rooms)".encode('utf-8'))
+                    client.send("You are now connected to the server ₍^ >ヮ<^₎ .ᐟ.ᐟ \nHere are some commands:\n/join <room> (to join a room)\n/leave (to leave a room)\n/exit (to leave the server)\n/list (to list all of the open rooms)".encode('utf-8'))
 
                     # Starts a thread for the client
                     thread = threading.Thread(target=self.handle_dat_client, args=(client,))
